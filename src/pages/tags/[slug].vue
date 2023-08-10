@@ -19,7 +19,7 @@
         <section class="px-5 pb-5 py-10 " >
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-20">
-    <div v-if="!mainstore.loadingBlog" v-for="i in articles">
+    <div v-if="!mainstore.loadingBlog" v-for="i in mainstore.blog">
         <router-link :to="`/articles/${i.slug.current}`"  class="flex flex-row gap-2">
            
         <img loading="lazy" style=" object-fit: cover;  object-position: center;"
@@ -66,7 +66,7 @@ const mainstore = useMainstore()
 
 const category = computed(()=> {return mainstore.categories.filter(x => x.title === route.params.slug)[0]})
 
-const articles = computed(()=> {return mainstore.blog.filter(x => x.category.categories.includes(category._id))})
+const articles = computed(()=> {return mainstore.blog.filter(x => x.categories[0]._ref === category._id)})
 
 </script>
 
