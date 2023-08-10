@@ -21,7 +21,7 @@
     <a  class="rounded-sm bg-red-700 px-5 py-2.5 text-sm font-medium text-white shadow"
  :href="`whatsapp://send?text=*${post.title}:* ${currentUrl}`" data-action="share/whatsapp/share" target="_blank">
     <v-icon name="bi-whatsapp"></v-icon>
- Partager cette article
+Share this article
 </a>
 </div>
  

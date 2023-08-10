@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import navbar from './components/navbar.vue';
+import footerx from './components/footer.vue';
 import { useMainstore } from './stores/mainstore';
 import {onMounted} from 'vue'
 
@@ -18,6 +19,8 @@ onMounted(()=>{
   <div data-theme="dark" class="ff bg-black">
  
   <RouterView />
+
+  <footerx></footerx>
 </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div v-motion-fade>
+    <div v-motion-fade>
+        <div >
  <div style="background-image: url('https://blogs.articulate.com/rapid-elearning/wp-content/uploads/sites/7/2018/09/how-to-animated-gif.gif');
 " class="herox">
         <div class="bler">
@@ -117,6 +117,11 @@ const categories = ref([])
 watch( searchTerm,()=>{
     categories.value = mainstore.categories.filter( x => x.title.toLowerCase().includes(searchTerm.value.toLowerCase()))
 })
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+scrollToTop()
 
 </script>
 

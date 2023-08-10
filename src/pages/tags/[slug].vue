@@ -14,12 +14,13 @@
     </div>
 </section>
 
+<v-btn v-if="false"  @click="viewj">vsuxbsx</v-btn>
 
 <div :style="`background: radial-gradient(${category.color.hex}, #000000);`">
         <section class="px-5 pb-5 py-10 " >
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pb-20">
-    <div v-if="!mainstore.loadingBlog" v-for="i in mainstore.blog">
+    <div v-if="!mainstore.loadingBlog" v-for="i in articles">
         <router-link :to="`/articles/${i.slug.current}`"  class="flex flex-row gap-2">
            
         <img loading="lazy" style=" object-fit: cover;  object-position: center;"
@@ -57,8 +58,14 @@
 import navbar from '../../components/navbar.vue';
 import { useMainstore } from '../../stores/mainstore';
 import {CreateURL} from '@/utils'
+import { client } from '../../client';
 import {useRoute} from 'vue-router'
 import {ref, computed} from 'vue'
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+scrollToTop()
 
 const route = useRoute()
 
@@ -66,7 +73,24 @@ const mainstore = useMainstore()
 
 const category = computed(()=> {return mainstore.categories.filter(x => x.title === route.params.slug)[0]})
 
-const articles = computed(()=> {return mainstore.blog.filter(x => x.categories[0]._ref === category._id)})
+const articles = computed(()=> {return mainstore.blog.filter(x => x.categories.filter(y => y._ref === category.value._id)[0])})
+
+
+async function viewj(){
+//console.log(mainstore.blog.filter(x => !x.categories ))
+console.log(mainstore.blog.filter(x => x.categories.filter(y => y._ref === category.value._id)[0]))
+//console.log(mainstore.blog.map(x => x.categories.includes(category.value._id) ? x : false ))
+
+// const ff =  await client.fetch('*[_type == "post"]{categories}');
+//     console.log(ff)
+//console.log(mainstore.blog[0].title)
+
+console.log(category.value._id)
+//console.log(mainstore.blog.filter(x => x.categories[0]._ref === category.value._id))
+
+
+}
+
 
 </script>
 

@@ -8,14 +8,14 @@
       </div> 
       <div class="drawer-side">
         <label for="my-drawer-4" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-36 h-full bg-gray-950 text-base-content pt-10 font-bold overf">
+        <ul class="menu p-4  bg-gray-950 text-base-content pt-10 font-bold overf">
           <!-- Sidebar content here -->
           <!-- <div class="font-bold text-lg mb-5">
             <span>    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
     </span>
      </div> -->
      <div class="flex flex-row justify-start">
-          <img class="mb-2 rounded-full " width="100" src="@/assets/logoac1.png" alt="" srcset="">
+          <img class="mb-4 " width="120" src="@/assets/logoac1.png" alt="" srcset="">
         </div>
           <!-- <li @click="router.push('/')"><a>Home</a></li>
           <li @click="router.push('/article/all')"><a>Articles</a></li>
@@ -25,57 +25,61 @@
                     class="text-gray-50 transition hover:text-red-500/75"
                     to='/'
                   >
-                    Acceuil
+                  🛖 Home
                   </router-link>
                 </li>
     
                 <li>
                   <router-link
                     class="text-gray-50 transition hover:text-red-500/75"
-                    to='/rooms'
+                    to='/articles'
                   >
-                    Decouvrir
+                  🔎 Search
                   </router-link>
                 </li>
+                <li>
+                  <router-link
+                    class="text-red-600 transition hover:text-red-500/75"
+                    to='/writers'
+                  >
+                  🧘 Writers
+                  </router-link>
+                </li>
+    
     
                 <li>
                   <router-link
                     class="text-red-600 transition hover:text-red-500/75"
-                    to="/rooms/chambres-vip"
+                    to="/tags"
                   >
-                    Chambres
+                  🏷️ Tags
                   </router-link>
                 </li>
-    
+
                 <li>
+                    -------------------
+                </li>
+
+                <li v-if="mainstore.loadingCategories" class="my-5">
+                    <v-progress-linear
+      indeterminate
+      color="red"
+    ></v-progress-linear>
+                </li>
+    
+                <li v-else v-for="i in mainstore.categories">
                   <router-link
                     class="text-gray-50 transition hover:text-red-500/75"
-                    to="/rooms/piscine"
+                    :to="`/tags/${i.title}`"
                   >
-                    Piscine
+                    {{ i.title.slice(0,15) }}..
                   </router-link>
                 </li>
+                
     
-                <li>
-                  <RouterLink
-                    class="text-red-600 transition hover:text-red-500/75"
-                    to="/rooms/cafeteria"
-                  >
-                    Restaurant
-                  </RouterLink>
-                </li>
-    
-                <li>
-                  <RouterLink
-                    class="text-gray-50 transition hover:text-red-500/75"
-                    to="/blog"
-                  >
-                    Blog
-                  </RouterLink>
-                </li>
-    
+             
                 <ul
-              class="grid grid-cols-3 justify-start gap-1 lg:col-span-5 lg:justify-end"
+              class="grid grid-cols-3 justify-start gap-1 lg:col-span-5 lg:justify-end mt-4"
             >
               <li>
                 <a
@@ -150,15 +154,7 @@
               
             </ul>
     
-            <li>
-                <a
-                class="rounded-sm mt-5 bg-red-700 px-5 py-2.5 text-sm font-medium text-white shadow"
-                href="/reservation"
-              >
-               Reserver
-              </a>
-    
-            </li>
+          
          
     
           <!-- <input type="checkbox" class="toggle toggle-lg ml-4 mt-5 mb-5" @click="props.darkModex" /> -->
@@ -200,18 +196,18 @@
                 <li>
                   <router-link
                     class="text-gray-50 transition hover:text-red-500/75"
-                    to='/rooms'
+                    to='/tags'
                   >
-                    About
+                    Tags
                   </router-link>
                 </li>
     
                 <li>
                   <router-link
                     class="text-gray-50 transition hover:text-red-500/75"
-                    to="/rooms/chambres-vip"
+                    to="/articles"
                   >
-                  Categoryx
+                  Articles
                     
                   </router-link>
                 </li>
@@ -287,6 +283,8 @@
     </template>
     
     <script setup>
+    import { useMainstore } from '../stores/mainstore';
+    const mainstore = useMainstore()
     
     </script>
     
@@ -294,6 +292,6 @@
     .xc{
       position: absolute;
       z-index: 10;
-      width: 200px;
+     
     }
     </style>

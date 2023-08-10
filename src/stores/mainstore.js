@@ -24,7 +24,7 @@ export const useMainstore = defineStore('mainstore', () => {
     loadingPages.value = false    
   }
   async function getBlog(){
-    blog.value =  await client.fetch('*[_type == "post"]');
+    blog.value =  await client.fetch('*[_type == "post"]{title, categories, body, mainImage, slug, publishedAt, author}');
     console.log(blog.value)
     loadingBlog.value = false    
   }

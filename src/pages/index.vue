@@ -30,12 +30,12 @@
  Explore our large collection of articles
             </p>
             <div class="flex flex-row justify-start">
-            <a
-            href="#"
+            <router-link
+            to="/tags"
             class="inline-block px-12 py-3 mt-8 text-sm font-medium text-white transition bg-gray-950 border border-gray-900 rounded hover:shadow focus:outline-none focus:ring"
           >
             Explore
-          </a>
+          </router-link>
         </div>
         </div>
           </header>
@@ -192,6 +192,11 @@ import { useMainstore } from '../stores/mainstore';
 import {CreateURL} from '@/utils'
 
 const mainstore = useMainstore()
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+scrollToTop()
 
 </script>
 
