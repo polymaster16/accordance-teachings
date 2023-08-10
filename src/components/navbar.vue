@@ -211,33 +211,24 @@
                     
                   </router-link>
                 </li>
+
+                
+                <li v-if="mainstore.loadingCategories" class="my-5">
+                    <v-progress-linear
+      indeterminate
+      color="red"
+    ></v-progress-linear>
+                </li>
     
-                <li>
+                <li v-else v-for="i in mainstore.categories.slice(6,9)">
                   <router-link
                     class="text-gray-50 transition hover:text-red-500/75"
-                    to="/rooms/piscine"
+                    :to="`/tags/${i.title}`"
                   >
-                    Category1
+                    {{ i.title.slice(0,15) }}..
                   </router-link>
                 </li>
     
-                <li>
-                  <RouterLink
-                    class="text-gray-50 transition hover:text-red-500/75"
-                    to="/rooms/cafeteria"
-                  >
-                  Category1
-                  </RouterLink>
-                </li>
-    
-                <li>
-                  <RouterLink
-                    class="text-gray-50 transition hover:text-red-500/75"
-                    to="/blog"
-                  >
-                  Category1
-                  </RouterLink>
-                </li>
               </ul>
             </nav>
           </div>
