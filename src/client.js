@@ -5,5 +5,5 @@ export const client = sanityClient({
   dataset: "production",
   useCdn: false,
   apiVersion: "2021-03-25",
-//   token: 'skU8rILHTTrbusIaZ4nDlfzfqAr3FRA4zPP9qLqvwXSm1ovCW6fUFmpEC5kGHQnn0DInZ4nblUoy0p3Z7zHUiOKjURkZnoa6OSQ4UcgzSC8jpWq36JMi0IEOJKgsDyFhYpbi9hicjZ2dr24fGKAlZ7z0hW6cV8nsaJmZ4i5v2FN8BD4hTuF3'
+  token: 'sk4RUBNXUs8a53GTd3PMnYkzanqhJGsro5iYEPH5fOAQ6CgEMYcyuwyRNqCZPLIBPPuEkhCpnm8kV6yJCjZrhYMKtjPWc4JXmvYZ41Sc4ivdu3a6aI5Up2UYhRW1RwGfeVkwRcwJB8yTMJ1DJdxe3tW6uq88fO1zuryBthGQaMCGdAZT9zcw'
 });

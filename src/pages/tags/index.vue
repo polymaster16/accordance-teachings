@@ -109,6 +109,8 @@ import navbar from '../../components/navbar.vue';
 import { useMainstore } from '../../stores/mainstore';
 import {CreateURL} from '@/utils'
 import {computed, ref, watch} from 'vue'
+import { useHead } from '@vueuse/head'
+
 
 const mainstore = useMainstore()
 const searchTerm = ref('')
@@ -122,6 +124,17 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 scrollToTop()
+
+  
+useHead({
+      title: 'Tags',
+      meta: [
+        { property: 'og:title', content: 'Tags' },
+        { property: 'og:description', content: 'Varous categories. Select your preffered niche and find the story which best suits you'},
+        { property: 'og:url', content: window.location.href },
+      ],
+    });
+  
 
 </script>
 

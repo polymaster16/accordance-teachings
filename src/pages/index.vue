@@ -164,7 +164,7 @@
        
          <div class="flex flex-col gap-2">
          <p class="text-md">{{ i.title }}</p>
-    <p class="text-xs text-red-500">0 reads</p>
+    <p class="text-xs text-red-500">{{ i.reads }} reads</p>
 </div>
 </router-link>
     </div>
@@ -190,6 +190,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import { useMainstore } from '../stores/mainstore';
 import {CreateURL} from '@/utils'
+import { useHead } from '@vueuse/head'
 
 const mainstore = useMainstore()
 
@@ -197,6 +198,18 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 scrollToTop()
+
+
+  
+useHead({
+      title: 'Home',
+      meta: [
+        { property: 'og:title', content: 'Home' },
+        { property: 'og:description', content: 'Home page of our blog. Get the latest updates..'},
+        { property: 'og:url', content: window.location.href },
+      ],
+    });
+  
 
 </script>
 

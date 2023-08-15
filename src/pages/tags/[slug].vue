@@ -28,7 +28,7 @@
        
          <div class="flex flex-col gap-2">
          <p class="text-md">{{ i.title }}</p>
-    <p class="text-xs text-red-500">0 reads</p>
+    <p class="text-xs text-red-500">{{ i.reads }} reads</p>
 </div>
 </router-link>
 
@@ -61,6 +61,8 @@ import {CreateURL} from '@/utils'
 import { client } from '../../client';
 import {useRoute} from 'vue-router'
 import {ref, computed} from 'vue'
+import { useHead } from '@vueuse/head'
+
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -74,6 +76,18 @@ const mainstore = useMainstore()
 const category = computed(()=> {return mainstore.categories.filter(x => x.title === route.params.slug)[0]})
 
 const articles = computed(()=> {return mainstore.blog.filter(x => x.categories.filter(y => y._ref === category.value._id)[0])})
+
+
+useHead({
+      title: computed(()=> {return category.value.title}),
+      meta: [
+        { property: 'og:title', content:  computed(()=> {return category.value.title}) },
+        { property: 'og:description', content:  computed(()=> {return category.value.description})},
+        { property: 'og:image', content: computed(()=>{return  CreateURL(category.value.image)  })},
+        { property: 'og:url', content: window.location.href },
+      ],
+    });
+
 
 
 async function viewj(){

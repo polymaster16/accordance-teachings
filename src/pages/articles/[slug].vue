@@ -34,9 +34,14 @@ Share this article
 import navbar from '../../components/navbar.vue';
 import {CreateURL} from '@/utils'
 import { useMainstore } from '../../stores/mainstore';
-import {computed, h} from 'vue'
+import {computed, h, watch} from 'vue'
 import {useRoute} from 'vue-router'
 import { SanityBlocks } from 'sanity-blocks-vue-component';
+import { useHead } from '@vueuse/head'
+import { client } from '../../client';
+
+
+
 
 const currentUrl = window.location.href
 const serializers = { 
@@ -57,6 +62,70 @@ const mainstore = useMainstore()
 
 const route = useRoute()
 const post = computed(()=> {return mainstore.blog.filter(x => x.slug.current === route.params.slug)[0]})
+
+!mainstore.loadingBlog && (post.value.reads = post.value.reads +1)
+
+//  watch(  mainstore.loadingBlog,()=>{
+
+//   mainstore.loadingBlog && console.log('reads', post.value.reads)
+//  })
+
+setTimeout(()=>{
+incrementReads()
+},3500)
+
+
+async function incrementReads(){
+ 
+  try {
+   client.patch(post.value._id).set({reads: post.value.reads}).commit() // Perform the patch and return a promise
+  .then((updatedBike) => {
+    console.log('Hurray, the post is updated! New document:')
+    console.log(updatedBike)
+  })
+  .catch((err) => {
+    console.error('Oh no, the update failed: ', err.message)
+  })
+
+  //   const doc={
+  //   _type:'comments',
+  //   name: 'from_app',
+  //   message: 'smalllllll small',
+  //   article: route.params.slug
+  // };
+  // client.create(doc)
+    console.log(post.value.reads)
+
+  } catch (error) {
+    console.log(error)
+  }
+
+
+}
+
+// watch(post.reads ,()=>{
+//   incrementReads()
+// })
+
+ //!mainstore.loadingBlog && incrementReads()
+
+
+ !mainstore.loadingBlog && 
+ useHead({
+      title: computed(()=> {return post.value.title}),
+      meta: [
+        { property: 'og:title', content:  computed(()=> {return post.value.title}) },
+        { property: 'og:description', content:  computed(()=> {return post.value.description})},
+        { property: 'og:image', content: computed(()=>{return  CreateURL(post.value.mainImage)  })},
+        { property: 'og:url', content: window.location.href },
+      ],
+    });
+
+
+
+
+
+
 </script>
 
 <style  scoped>

@@ -6,6 +6,9 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+import { createHead } from '@vueuse/head'
+const head = createHead()
+
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -35,6 +38,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(vuetify)
+app.use(head)
 app.use(MotionPlugin)
 app.component("v-icon", OhVueIcon);
 

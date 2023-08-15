@@ -40,7 +40,7 @@
                 <li>
                   <router-link
                     class="text-red-600 transition hover:text-red-500/75"
-                    to='/writers'
+                    to='/'
                   >
                   🧘 Writers
                   </router-link>
@@ -159,7 +159,6 @@
     
           <!-- <input type="checkbox" class="toggle toggle-lg ml-4 mt-5 mb-5" @click="props.darkModex" /> -->
           <div class="mt-4">
-            <bottom-icons class="mt-4 mx-14"/>
     
           </div>
           
@@ -237,7 +236,7 @@
             <div class="sm:flex sm:gap-4">
               <router-link
                 class="rounded-sm bg-red-700 px-5 py-2.5 text-sm font-medium text-white shadow"
-                to="/reservation"
+                to="/"
               >
                 <v-icon scale="1" name="fa-user-astronaut"></v-icon>
               </router-link>
