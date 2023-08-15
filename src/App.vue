@@ -10,6 +10,7 @@ const mainstore = useMainstore()
 onMounted(()=>{
   mainstore.getCategories()
   mainstore.getBlog()
+  mainstore.getAuthors()
 
 })
 

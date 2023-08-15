@@ -7,10 +7,13 @@ export const useMainstore = defineStore('mainstore', () => {
   const categories = ref([])
   const pages = ref([])
   const blog = ref([])
+  const authors = ref([])
+
 
   const loadingCategories = ref(true)
   const loadingPages = ref(true)
   const loadingBlog = ref(true)
+  const loadingAuthors = ref(true)
 
   async function getCategories(){
     categories.value =  await client.fetch('*[_type == "category"]');
@@ -29,8 +32,14 @@ export const useMainstore = defineStore('mainstore', () => {
     loadingBlog.value = false    
   }
  
+  async function getAuthors(){
+    authors.value =  await client.fetch('*[_type == "author"]');
+    console.log(authors.value)
+    loadingAuthors.value = false    
+  }
+ 
  
  
 
-  return { count, categories, loadingCategories, getCategories, getPages, getBlog, blog, pages, loadingBlog, loadingPages}
+  return { count, categories, loadingCategories, getCategories, getPages, getBlog, blog, pages, loadingBlog, loadingPages, authors, loadingAuthors, getAuthors}
 })

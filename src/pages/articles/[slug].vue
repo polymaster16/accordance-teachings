@@ -8,11 +8,17 @@
         
         <img class="mt-5" :src="CreateURL(post.mainImage, 480, 360)" alt="" srcset="">
 
+        <div class="flex flex-row gap-4">
         <div class="text-xs text-gray-300 font-thin mt-3">📅 {{ new Date(post.publishedAt).getDay()  }} / {{ new Date(post.publishedAt).getMonth()  }} / {{ new Date(post.publishedAt).getFullYear()  }} </div>
-
+        <div class="text-xs text-gray-300 font-thin mt-3">✍️ written by {{ mainstore.authors.filter(x => x._id === post.author._ref )[0].name }} </div>
+      </div>
         <div class=" pb-5 pt-5 blockstyle">
               <SanityBlocks :blocks="post.body" :serializers="serializers"  /> 
    
+             </div>
+
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-1" >
+              <v-chip @click="router.push(`/tags/${mainstore.categories.filter(x => x._id === i._ref)[0].title}`)" v-for="i in post.categories">{{ mainstore.categories.filter(x => x._id === i._ref)[0].title }}</v-chip>
              </div>
 
 
@@ -35,14 +41,14 @@ import navbar from '../../components/navbar.vue';
 import {CreateURL} from '@/utils'
 import { useMainstore } from '../../stores/mainstore';
 import {computed, h, watch} from 'vue'
-import {useRoute} from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
 import { SanityBlocks } from 'sanity-blocks-vue-component';
 import { useHead } from '@vueuse/head'
 import { client } from '../../client';
 
 
 
-
+const router = useRouter()
 const currentUrl = window.location.href
 const serializers = { 
      types: {
