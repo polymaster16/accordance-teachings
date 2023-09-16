@@ -1,3 +1,5 @@
+importScripts("https://progressier.app/eQ3nJZqFoChApVjBebRW/sw.js" );
+
 var version = "v2.0.4";
 var swPath;
 var urlObject = new URL(location);
