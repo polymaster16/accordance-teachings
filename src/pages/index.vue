@@ -5,7 +5,7 @@
         <div class="bler">
     <navbar></navbar>
     <p class="text-3xl text-center font-bold mt-10">
-        Accordace teachings
+        Accordance teachings
     </p>
     <router-link to="/articles" class="text-red-600 mb-14 text-center grid justify-center font-bold text-sm mt-4 underline">
         View  our articles
