@@ -87,52 +87,20 @@
 
  <section class="on2 pb-10">
     <p class="font-bold text-center text-3xl text-red-500 pb-1 md:pb-4  pt-10">
-   Top stories  </p>
-    <carousel  v-if="!mainstore.loadingBlog"  :autoplay="2000" :wrapAround="true" :itemsToShow="1" :transition="500" >
-    <slide  v-for="blog in mainstore.blog.slice(0,5)" :key="blog.title">
-        <article class="flex bg-gray-700 bg-opacity-60 transition hover:shadow-xl mx-5">
-  <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
-    <time
-      datetime="2022-10-10"
-      class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-50"
-    >
-      <span>2023</span>
-      <span class="w-px flex-1 bg-gray-900/10"></span>
-      <span>13th 8</span>
-    </time>
-  </div>
-
-  <div class="hidden sm:block sm:basis-56">
-    <img
-      alt="Guitar"
-      :src="CreateURL(blog.mainImage)"
-      class="aspect-square h-full w-full object-cover"
-    />
-  </div>
-
-  <div class="flex flex-1 flex-col justify-between">
-    <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-      <a href="#">
-        <h3 class="font-bold uppercase text-gray-50">
-          {{ blog.title }}
-        </h3>
-      </a>
-
-      <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-50">
-      
-      </p>
-    </div>
-
-    <div class="sm:flex sm:items-end sm:justify-end">
-      <a
-        href="#"
-        class="block bg-red-700 px-5 py-3 text-center text-xs font-bold uppercase text-gray-50 transition hover:bg-yellow-400"
-      >
-        Read Blog
-      </a>
-    </div>
-  </div>
-</article>
+   Top stories
+    </p>
+    <carousel  v-if="!mainstore.loadingBlog"  :wrapAround="false" :itemsToShow="1" :transition="500" >
+    <slide  v-for="i in mainstore.blog.slice(0,5)" :key="i.title">
+      <router-link :to="`/articles/${i.slug.current}`"  class="flex flex-row gap-2 px-2 pt-4">
+           
+           <img loading="lazy" style=" object-fit: cover;  object-position: center;"
+            :src="CreateURL(i.mainImage, 110, 110  )" alt="" srcset="">
+          
+            <div class="flex flex-col gap-2">
+            <p class="text-md">{{ i.title }}</p>
+       <p class="text-xs text-red-500">{{ i.reads }} reads</p>
+   </div>
+   </router-link>
     </slide>
 
     <template #addons>

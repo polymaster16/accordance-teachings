@@ -29,6 +29,7 @@ onMounted(()=>{
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
 .ff{
 font-family: Poppins;
+overflow-x: hidden;
 }
 
 </style>
