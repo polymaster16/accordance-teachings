@@ -76,7 +76,7 @@ const mainstore = useMainstore()
 const category = computed(()=> {return mainstore.categories.filter(x => x.title === route.params.slug)[0]})
 
 const articles = computed(()=> {return mainstore.blog.filter(x => x.categories.filter(y => y._ref === category.value._id)[0])})
-
+ 
 
 useHead({
       title: computed(()=> {return category.value.title}),
